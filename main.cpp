@@ -3,19 +3,23 @@
 
 using namespace std;
 
+bool isNumeric(const string& str) {
+    for (char ch : str) {
+        if (!isdigit(ch))
+            return false;
+    }
+    return !str.empty();
+}
+
 int main() {
     string input;
-    cout << "Enter an expression: ";
+    cout << "Enter input: ";
     cin >> input;
 
-    cout << "Operators found:\n";
-    for (char ch : input) {
-        if (ch == '+' || ch == '-' || ch == '*' ||
-            ch == '/' || ch == '%' || ch == '=') {
-            cout << "Operator: " << ch << endl;
-        }
-    }
+    if (isNumeric(input))
+        cout << "Numeric constant\n";
+    else
+        cout << "Not numeric\n";
 
     return 0;
 }
-
