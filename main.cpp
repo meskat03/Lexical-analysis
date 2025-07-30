@@ -3,26 +3,24 @@
 
 using namespace std;
 
-bool isIdentifier(const string& str) {
-    if (str.empty() || (!isalpha(str[0]) && str[0] != '_'))
-        return false;
-
-    for (char ch : str.substr(1)) {
-        if (!isalnum(ch) && ch != '_')
-            return false;
-    }
-    return true;
-}
-
 int main() {
     string input;
-    cout << "Enter identifier: ";
-    cin >> input;
+    cout << "Enter a line: ";
+    getline(cin, input);
 
-    if (isIdentifier(input))
-        cout << "Valid Identifier\n";
-    else
-        cout << "Not a valid Identifier\n";
+    if (input.starts_with("//")) {
+        cout << "Single line comment\n";
+    }
+    else if (input.starts_with("/*")) {
+        if (input.size() >= 4 && input.ends_with("*/")) {
+            cout << "Multi-line comment\n";
+        } else {
+            cout << "Possibly part of a multi-line comment\n";
+        }
+    }
+    else {
+        cout << "Not a comment\n";
+    }
 
     return 0;
 }
